@@ -1,0 +1,2 @@
+# Use only Unix line feeds
+*.cpp    text eol=lf
