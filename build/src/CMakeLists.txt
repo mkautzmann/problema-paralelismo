@@ -4,7 +4,11 @@ project(ProblemaParalelismo)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/")
 
 add_custom_target(cleanall
-rm -rf *
+rm -rf bin
+rm -rf CMakeFiles
+rm Makefile
+rm cmake_install.cmake
+rm CMakeCache.txt
 )
 
 include(CheckCXXCompilerFlag)
