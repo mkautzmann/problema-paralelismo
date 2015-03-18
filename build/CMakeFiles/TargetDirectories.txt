@@ -1,0 +1,2 @@
+/Users/matheus/Dropbox/PARALELO/problema-paralelismo/build/CMakeFiles/ProblemaParalelismo.dir
+/Users/matheus/Dropbox/PARALELO/problema-paralelismo/build/CMakeFiles/cleanall.dir
