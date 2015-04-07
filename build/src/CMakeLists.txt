@@ -22,4 +22,5 @@ else()
         message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
-add_executable(ProblemaParalelismo main.cpp)
+add_executable(ProblemaFilosofos main.cpp Filosofo.cpp Filosofo.h Garfo.cpp Garfo.h ProblemaFilosofos.cpp ProblemaFilosofos.h Messenger.cpp Messenger.h)
+

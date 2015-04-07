@@ -5,29 +5,35 @@
 #include "ProblemaFilosofos.h"
 
 
-void ProblemaFilosofos::executar() {
+ProblemaFilosofos::ProblemaFilosofos() {
+
+    int i;
+    Messenger messenger;
+    Filosofo* f;
+    Garfo* g;
 
     // Cria os garfos
-    for(int i = 0; i < NUMERO_GARFOS; i++) {
-        this->garfos[i] = Garfo::Garfo();
+    for(i = 0; i < NUMERO_GARFOS; i++) {
+        g = new Garfo();
+        this->garfos.push_back(g);
     }
 
     // Cria os filosofos e começa o programa
-    for(int i = 0; i < NUMERO_FILOSOFOS; i++) {
-        if(i == 0)
-            this->filosofos[i] = Filosofo::Filosofo(&this->garfos[i], &this->garfos[NUMERO_GARFOS - 1]);
-        else
-            this->filosofos[i] = Filosofo::Filosofo(&this->garfos[i], &this->garfos[i - 1]);
+    for(i = 0; i < NUMERO_FILOSOFOS; i++) {
+        messenger.log("Filosofo " + std::to_string(i) + " sentou na mesa.");
+        if(i == 0) {
+            f = new Filosofo(i, this->garfos[i], this->garfos[NUMERO_GARFOS - 1], &messenger);
+            this->filosofos.push_back(f);
+        }
+        else {
+            f = new Filosofo(i, this->garfos[i], this->garfos[i - 1], &messenger);
+            this->filosofos.push_back(f);
+        }
     }
-
 }
 
 void ProblemaFilosofos::parar() {
 
-    //TODO: Implementar a parada das threads e do programa
-
-    for(auto filosofo : this->filosofos) {
-        filosofo.morre();
-    }
+    Filosofo::morre();
 
 }

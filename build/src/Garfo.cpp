@@ -8,10 +8,18 @@ Garfo::Garfo() {
     this->emUso = EstadoGarfo::LIVRE;
 }
 
-int Garfo::estaEmUso() {
+int Garfo::getEstado() {
     return this->emUso;
 }
 
-void Garfo::usar() {
-    this->emUso = EstadoGarfo::OPUPADO;
+bool Garfo::usar() {
+    if(this->getEstado() == EstadoGarfo::LIVRE) {
+        this->emUso = EstadoGarfo::OPUPADO;
+        return true;
+    }
+    return false;
+}
+
+void Garfo::liberar() {
+    this->emUso = EstadoGarfo::LIVRE;
 }

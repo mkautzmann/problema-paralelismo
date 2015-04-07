@@ -7,33 +7,38 @@
 
 // Inclusão das bibliotecas necessárias
 #include <iostream>
-#include <unistd.h>
-#include "Filosofo.h"
+#include <thread>
+#include "ProblemaFilosofos.h"
 
-using namespace std;
+void encerrar();
 
-// Definição de constantes do projeto
-#define NUMERO_FILOSOFOS 5
+ProblemaFilosofos* p1;
 
-// Define funções utilizadas no projeto
-void filosofar(int id);
+Messenger* messenger;
 
-
-// TODO: Implementar a navegação entre os problemas e a ligação das funções
 int main(int argc, char* argv[]) {
 
-  Filosofo filosofos[5];
+  messenger->log("Iniciando o problema dos filósofos. Pressione enter para parar a execução e ver o relatório.");
+  messenger->log("");
 
-  for(int i = 0; i < NUMERO_FILOSOFOS; i++) {
-    filosofos[i] = Filosofo::Filosofo();
-  }
+  p1 = new ProblemaFilosofos();
 
-  cout << "Todas as threads abriram e terminaram";
+  std::thread t1 (encerrar);
+
+  t1.join();
+
+  delete p1;
+
+  getchar();
+
+  messenger->log("Programa terminado!");
 
   return 0;
 }
 
-// TODO: Implementar a verdadeira função
-void filosofar(int id) {
-	sleep(id);
+void encerrar() {
+  getchar();
+  messenger->log("Encerrando loops de vida dos filosofos, aguarde os resultados e depois pressione enter para encerrar o programa");
+  messenger->log("");
+  p1->parar();
 }

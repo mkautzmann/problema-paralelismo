@@ -11,8 +11,9 @@ class Garfo {
         int emUso;
     public:
         enum EstadoGarfo { OPUPADO, LIVRE };
-        int estaEmUso();
-        void usar();
+        int getEstado();
+        bool usar();
+        void liberar();
         Garfo();
 };
 

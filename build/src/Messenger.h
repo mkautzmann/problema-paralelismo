@@ -10,11 +10,9 @@
 #import <iostream>
 
 class Messenger {
-    private:
-        std::mutex lock;
-    public:
-        void print(std::string value);
+  public:
+    static void print(std::string value);
+    static void log(std::string value);
 };
-
 
 #endif //_BUILD_MESSENGER_H_

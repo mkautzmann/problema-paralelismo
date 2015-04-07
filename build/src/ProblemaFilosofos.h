@@ -8,15 +8,17 @@
 #define NUMERO_FILOSOFOS 5
 #define NUMERO_GARFOS NUMERO_FILOSOFOS
 
+#import <vector>
+#import "Messenger.h"
 #import "Filosofo.h"
 #import "Garfo.h"
 
 class ProblemaFilosofos {
     private:
-        Filosofo filosofos[NUMERO_FILOSOFOS];
-        Garfo garfos[NUMERO_GARFOS];
+        std::vector<Filosofo*> filosofos;
+        std::vector<Garfo*> garfos;
     public:
-        void executar();
+        ProblemaFilosofos();
         void parar();
 };
 

@@ -4,8 +4,23 @@
 
 #include "Messenger.h"
 
+std::mutex semaforo;
+
+int grupo = 0;
+
 void Messenger::print(std::string value) {
-    lock.lock();
+    semaforo.lock();
     std::cout << value << std::endl;
-    lock.unlock();
+    grupo++;
+    if(grupo == 5) {
+        std::cout << std::endl;
+        grupo = 0;
+    }
+    semaforo.unlock();
+}
+
+void Messenger::log(std::string value) {
+    semaforo.lock();
+    std::cout << value << std::endl;
+    semaforo.unlock();
 }
