@@ -4,8 +4,20 @@
 
 #include "Filosofo.h"
 
-// Todos compartilham o status de vivo ou morto
-static bool vivo = true;
+// Declaração de variáveis de thread e função de espera por plataforma
+#ifdef _WIN32
+
+#include <Windows.h>
+
+__declspec(thread) int id;
+__declspec(thread) Garfo* garfoEsquerda;
+__declspec(thread) Garfo* garfoDireita;
+__declspec(thread) int vezesComeu = 0;
+__declspec(thread) int estado = Filosofo::EstadoFilosofo::NOVO;
+
+#else
+
+#include <unistd.h>
 
 __thread int id;
 __thread Garfo* garfoEsquerda;
@@ -13,16 +25,30 @@ __thread Garfo* garfoDireita;
 __thread int vezesComeu = 0;
 __thread int estado = Filosofo::EstadoFilosofo::NOVO;
 
+#endif
+
+// Todos compartilham o status de vivo ou morto
+static bool vivo = true;
+
 Filosofo::Filosofo(int id, Garfo* garfoEsquerda, Garfo* garfoDireita, Messenger* messenger) {
-    messenger->log("Filosofo " + std::to_string(id) + " começará suas atividades.");
+    messenger->log("Filosofo " + std::to_string(id) + " pronto para iniciar.");
     this->tFilosofo = std::thread(&Filosofo::vive, this, id, garfoEsquerda, garfoDireita);
 };
 
+void Filosofo::espera(unsigned int segundos) {
+    #ifdef _WIN32
+    Sleep(segundos*1000);
+    #else
+    sleep(segundos);
+    #endif
+}
+
+// Ciclo de vida do filósofo
 void Filosofo::vive(Filosofo *ctx, int _id, Garfo* ge, Garfo* gd) {
     id = _id;
     garfoEsquerda = ge;
     garfoDireita = gd;
-    sleep(1);
+    espera(1);
     while(vivo) {
         pensa(ctx);
         if(pega_garfos()) {
@@ -44,19 +70,16 @@ void Filosofo::come(Filosofo *ctx) {
     estado = Filosofo::EstadoFilosofo::COMENDO;
     ctx->messenger->print("Filosofo " + std::to_string(id) + " comendo...");
     vezesComeu++;
-    sleep(2);
+    espera(2);
 }
 
 void Filosofo::pensa(Filosofo *ctx) {
-    srand(time(NULL));
-    int tempo = rand() % 10;
     estado = Filosofo::EstadoFilosofo::PENSANDO;
     ctx->messenger->print("Filosofo " + std::to_string(id) + " pensando...");
-    sleep(2);
+    espera(2);
 }
 
 bool Filosofo::pega_garfos() {
-    //messenger->print("Filosofo " + std::to_string(id) + " está com fome!");
     estado = Filosofo::EstadoFilosofo::FOME;
     if(pega_garfo(garfoEsquerda)) {
         if(pega_garfo(garfoDireita)) {

@@ -5,10 +5,9 @@
 #ifndef _BUILD_FILOSOFO_H_
 #define _BUILD_FILOSOFO_H_
 
-#import <thread>
-#import "unistd.h"
-#import "Garfo.h"
-#import "Messenger.h"
+#include <thread>
+#include "Garfo.h"
+#include "Messenger.h"
 
 class Filosofo {
     private:
@@ -19,6 +18,7 @@ class Filosofo {
         static void solta_garfos();
         static bool pega_garfo(Garfo* garfo);
         static void solta_garfo(Garfo* garfo);
+        static void espera(unsigned int segundos);
     public:
         enum EstadoFilosofo { NOVO, COMENDO, PENSANDO, FOME };
         std::thread tFilosofo;

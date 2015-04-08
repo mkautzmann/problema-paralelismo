@@ -8,10 +8,10 @@
 #define NUMERO_FILOSOFOS 5
 #define NUMERO_GARFOS NUMERO_FILOSOFOS
 
-#import <vector>
-#import "Messenger.h"
-#import "Filosofo.h"
-#import "Garfo.h"
+#include <vector>
+#include "Messenger.h"
+#include "Filosofo.h"
+#include "Garfo.h"
 
 class ProblemaFilosofos {
     private:

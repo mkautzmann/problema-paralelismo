@@ -21,6 +21,7 @@ ProblemaFilosofos::ProblemaFilosofos() {
     // Cria os filosofos e começa o programa
     for(i = 0; i < NUMERO_FILOSOFOS; i++) {
         messenger.log("Filosofo " + std::to_string(i) + " sentou na mesa.");
+        // Primeiro filósofo recebe garfos 0 e 4, subsequentes seguem a ordem.
         if(i == 0) {
             f = new Filosofo(i, this->garfos[i], this->garfos[NUMERO_GARFOS - 1], &messenger);
             this->filosofos.push_back(f);
@@ -34,6 +35,7 @@ ProblemaFilosofos::ProblemaFilosofos() {
 
 void ProblemaFilosofos::parar() {
 
+    // Enviando sinal de parada para todos os filósofos
     Filosofo::morre();
 
 }
