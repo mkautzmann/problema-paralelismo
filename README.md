@@ -56,9 +56,9 @@ OBS: Usuários de Windows devem ter [Visual C++ 2013](http://www.microsoft.com/e
 
 O binário está disponível nos item Releases do repositório GitHub.
 
-Link direto para Windows: [ProblemaFilosofos.exe](releases/download/1.0.0w/ProblemaFilosofos.exe)
+Link direto para Windows: [ProblemaFilosofos.exe](https://github.com/mkautzmann/problema-paralelismo/releases/download/1.0.0w/ProblemaFilosofos.exe)
 
-Link direto para OSX: [ProblemaFilosofos](releases/download/1.0.0/ProblemaFilosofos)
+Link direto para OSX: [ProblemaFilosofos](https://github.com/mkautzmann/problema-paralelismo/releases/download/1.0.0/ProblemaFilosofos)
 
 ## Fazendo build do projeto
 
