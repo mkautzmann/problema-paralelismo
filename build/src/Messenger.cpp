@@ -8,7 +8,6 @@ std::mutex semaforo;
 
 int grupo = 0;
 
-// Imprime de forma serializada os outputs de cada filósofo, agrupando de 5 em 5 linhas
 void Messenger::print(std::string value) {
     semaforo.lock();
     std::cout << value << std::endl;
@@ -20,7 +19,6 @@ void Messenger::print(std::string value) {
     semaforo.unlock();
 }
 
-// Imprime log de programa sem interferir nas outras threads
 void Messenger::log(std::string value) {
     semaforo.lock();
     std::cout << value << std::endl;

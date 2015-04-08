@@ -1,52 +1,29 @@
-# Problema dos filósofos famintos
+# Problema do barbeiro dorminhoco
 
-Consiste em cinco filósofos que passam suas vidas meditando e comendo. Uma mesa
-redonda é compartilhada entre os filósofos contendo cinco cadeiras.
-
-Cada Filósofo tem um prato de espaguete. Para que o filósofo consiga comer ele precisa de 2 garfos. A vida de cada filósofo consiste em períodos nos quais ele alternadamente come e pensa.
-
-Quando ele medita ele não interage com seus colegas. Quando um filósofo sente fome ele tenta pegar os dois garfos mais próximos de si (direita e esquerda do seu próprio prato). Um filósofo pode pegar apenas um garfo de cada vez (a ordem não importa) e, é claro, não poderá pegar nenhum garfo que esteja na mão de outro filósofo.
+Existe uma barbearia com uma cadeira comum neste tipo de estabelecimento,
+também existe uma série de lugares para que os clientes possam esperar. Caso não
+tenha clientes, o barbeiro senta em sua cadeira e dorme. Quando chegarem
+fregueses, enquanto o barbeiro estiver cortando o cabelo de outro, estes devem ou
+sentar, se houver cadeira vazia, ou ir embora, se não houver nenhuma cadeira livre.
 
 ## Restrições
 
-As restrições conhecidas deste problema são as seguintes:
+ - O barbeiro só pode atender um cliente por vez;
+ - O barbeiro dorme quando não existam clientes querendo atenção;
+ - O sistema deve executar concorrentemente as funções de barbeiro e clientes;
+ - Existem 5 cadeiras de espera no estabelecimento, se chegar algum cliente extra ele deve ir embora.
 
-  - Cada filósofo deve funcionar de forma independente e paralela (threading);
-  - Nenhum filósofo deve ficar sem comer por um tempo prolongado (starvation);
-  - Um garfo não pode ficar trancado com um filósofo (deadlock).
+## Solução
 
-## Resolução
+Para resolver utilizamos a técnica de exclusão mútua através da biblioteca `<mutex>` do C++.
 
-Para resolver o problema resolvemos separá-lo em partes, usando classes do C++.
-Existem 4 classes na solução:
+Basicamente temos o barbeiro rodando em uma thread e criamos uma thread para cada cliente.
 
-  - ProblemaFilosofos
-  - Garfo
-  - Filósofo
-  - Messenger
+Os clientes concorrem pela atenção do barbeiro, que vai recebendo um cliente por vez conforme possível.
 
-A classe ProblemaFilosofos é responsável por coordenar a criação e destruição dos
-filósofos bem como dos garfos. Já a classe Messenger apenas possibilita a comunicação do estado atual de cada filósofo e outras mensagens de log para a saída padrão.
+O intervalo de chegada de cada cliente é randômico assim como o tempo que o barbeiro leva em cada corte.
 
-As classes mais importantes são Filósofo e Garfo respectivamente, a primeira contém
-a criação de cada thread/Filósofo e a segunda contém o estado dos Garfos.
-
-O ciclo da função `vive()` define muito bem como a coisa acontece, enquanto o Filósofo estiver vivo ele vai seguir o seguinte ciclo de vida:
-
-  - **Pensar**, nesta tarefa ele apenas espera, sem usar recursos de área crítica;
-  - **Pegar garfos**, quando estiver com fome ele vai tentar pegar um Garfo e depois o outro. O Garfo é um recurso compartilhado entre dois Filósofos, ou seja de área crítica;
-  - **Comer**, se ele possui os dois Garfos necessários ele pode comer;
-  - **Soltar garfos**, depois de comer ele deve soltar os Garfos para liberar a chance para os outros;
-
-Atenção para um item imporante: caso o filósofo consiga somente um garfo ele deve soltar este garfo e esperar (pensar) mais um pouco.
-
-## Observações
-
-Não usamos tempo randômico na solução pelo fato das threads não serem fisicamente iniciadas ao mesmo tempo, pois elas estão sendo iniciadas por um loop na thread principal.
-
-Ao invés disso fixamos um tempo de espera para o filósofo pensado e um para o filósofo comendo.
-
-Outros pontos importantes se encontram nos comentários do código.
+Mais detalhes estão disponíveis em comentários no fonte.
 
 ## Download do binário pronto
 
@@ -56,15 +33,15 @@ OBS: Usuários de Windows devem ter [Visual C++ 2013](http://www.microsoft.com/e
 
 O binário está disponível nos item Releases do repositório GitHub.
 
-Link direto para Windows: [ProblemaFilosofos.exe](https://github.com/mkautzmann/problema-paralelismo/releases/download/1.0.0w/ProblemaFilosofos.exe)
+Link direto para Windows: [ProblemaBarbeiro.exe](https://github.com/mkautzmann/problema-paralelismo/releases/download/1.0.0wb/ProblemaBarbeiro.exe)
 
-Link direto para OSX: [ProblemaFilosofos](https://github.com/mkautzmann/problema-paralelismo/releases/download/1.0.0/ProblemaFilosofos)
+Link direto para OSX: [ProblemaBarbeiro](https://github.com/mkautzmann/problema-paralelismo/releases/download/1.0.0b/ProblemaBarbeiro)
 
 ## Fazendo build do projeto
 
 Caso você deseja compilar na sua máquina siga os passos a seguir:
 
-O programa dos filósofos usa CMake para facilitar o build muiltiplatafoma.
+O programa do barbeiro usa CMake para facilitar o build muiltiplatafoma.
 
   - Se você ainda não possui o CMake, [instale ele](http://www.cmake.org/download/).
   - Tenha certeza que você possui um compilador C++ que suporte C++11, o CMake vai verificar e informar você.

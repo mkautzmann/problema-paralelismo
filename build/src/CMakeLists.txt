@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 2.6)
-project(ProblemaFilosofos)
+project(ProblemaBarbeiro)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/")
 
@@ -23,4 +23,4 @@ if(NOT MSVC)
   endif()
 endif()
 
-add_executable(ProblemaFilosofos main.cpp Filosofo.cpp Filosofo.h Garfo.cpp Garfo.h ProblemaFilosofos.cpp ProblemaFilosofos.h Messenger.cpp Messenger.h)
+add_executable(ProblemaBarbeiro main.cpp Messenger.cpp Messenger.h)
