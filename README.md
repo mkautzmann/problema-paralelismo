@@ -33,7 +33,7 @@ OBS: Usuários de Windows devem ter [Visual C++ 2013](http://www.microsoft.com/e
 
 O binário está disponível nos item Releases do repositório GitHub.
 
-Link direto para Windows: [ProblemaBarbeiro.exe](https://github.com/mkautzmann/problema-paralelismo/releases/download/1.0.0wb/ProblemaBarbeiro.exe)
+Link direto para Windows: [ProblemaBarbeiro.exe](https://github.com/mkautzmann/problema-paralelismo/releases/download/1.0.0wb/ProblemaBarbeiro.exe.zip)
 
 Link direto para OSX: [ProblemaBarbeiro](https://github.com/mkautzmann/problema-paralelismo/releases/download/1.0.0b/ProblemaBarbeiro)
 
