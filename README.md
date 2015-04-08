@@ -52,9 +52,13 @@ Outros pontos importantes se encontram nos comentários do código.
 
 Disponibilizamos o programa pré-compilado para Windows e OSX x86_64.
 
-OBS: Usuários de Windows devem ter Visual C++ 2013+ instalado pois o sistema não possui as bibliotecas padrão da linguagem nativamente. Geralmente máquinas que já rodam outras aplicações como jogos ou browsers e etc já têm este componente instalado.
+OBS: Usuários de Windows devem ter [Visual C++ 2013](http://www.microsoft.com/en-us/download/details.aspx?id=40784)+ instalado pois o sistema não possui as bibliotecas padrão da linguagem nativamente. Geralmente máquinas que já rodam outras aplicações como jogos ou browsers e etc já têm este componente instalado.
 
-O binário está disponível nos item Releases do repositório GitHub. Aqui está o link direto.
+O binário está disponível nos item Releases do repositório GitHub.
+
+Link direto para Windows: [ProblemaFilosofos.exe](releases/download/1.0.0w/ProblemaFilosofos.exe)
+
+Link direto para OSX: [ProblemaFilosofos](releases/download/1.0.0/ProblemaFilosofos)
 
 ## Fazendo build do projeto
 
@@ -62,8 +66,8 @@ Caso você deseja compilar na sua máquina siga os passos a seguir:
 
 O programa dos filósofos usa CMake para facilitar o build muiltiplatafoma.
 
-  - Se você ainda não possui o CMake, instale ele.
+  - Se você ainda não possui o CMake, [instale ele](http://www.cmake.org/download/).
   - Tenha certeza que você possui um compilador C++ que suporte C++11, o CMake vai verificar e informar você.
   - Se OK até aqui vá até a pasta `build/src` do projeto e rode `cmake .`
   - Em sistemas Unix/Linux isso vai criar um Makefile para você rodar `make`. O binário vai estar na pasta `build/src/bin`
-  - Em Windows você precisa do Visual Studio 2013+ ou superior, depois de rodar o comando o CMake vai gerar um `.sln` que quando compilado vai gerar um binário para você.
+  - Em Windows você precisa do [Visual Studio 2013](http://www.microsoft.com/en-us/download/details.aspx?id=44914)+ ou superior, depois de rodar o comando o CMake vai gerar um `.sln` que quando compilado vai gerar um binário para você.
