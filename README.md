@@ -22,8 +22,8 @@ deve suportar essa versão
 Cada problema tem seu próprio programa e método de build. Os projetos
 estão separados em branches. Abaixo você tem um link para elas:
 
-  - [Problema dos filósofos]()
-  - [Problema do barbeiro]()
+  - [Problema dos filósofos](https://github.com/mkautzmann/problema-paralelismo/tree/problema-filosofos)
+  - [Problema do barbeiro](https://github.com/mkautzmann/problema-paralelismo/tree/problema-barbeiro)
 
 Cada branch também tem seu próprio README com explicações sobre o projeto.
 
