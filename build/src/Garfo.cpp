@@ -13,10 +13,12 @@ int Garfo::getEstado() {
 }
 
 bool Garfo::usar() {
+    tranca.lock()
     if(this->getEstado() == EstadoGarfo::LIVRE) {
         this->emUso = EstadoGarfo::OPUPADO;
         return true;
     }
+    tranca.unlock();
     return false;
 }
 
